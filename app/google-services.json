@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "130895860444",
+    "project_id": "fruitley-751d2",
+    "storage_bucket": "fruitley-751d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130895860444:android:96b95f66879d6821c99a19",
+        "android_client_info": {
+          "package_name": "com.example.fruitley"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130895860444-qt5mmm1gbjjmhs5guciu8brft5hh9b56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAGI2K9FfkEdfVeJmmsLw_MzvH76qfM3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130895860444-qt5mmm1gbjjmhs5guciu8brft5hh9b56.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
