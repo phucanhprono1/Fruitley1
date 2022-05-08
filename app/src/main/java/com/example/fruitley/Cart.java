@@ -13,26 +13,40 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.fruitley.adapter.PlaceYourOrderAdapter;
 import com.example.fruitley.adapter.RestaurantAdapter;
 import com.example.fruitley.model.Food;
 import com.example.fruitley.model.Restaurant;
 import com.example.fruitley.model.User;
 import com.google.android.material.navigation.NavigationView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    DrawerLayout drawerlayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
-    TextView phoneLabel,usernameLabel;
-    View header;
-    RecyclerView cartItemsRecyclerView;
+    private DrawerLayout drawerlayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+    private TextView phoneLabel,usernameLabel;
+    private View header;
+    private float delivery_charge;
+
+
+
+    private RecyclerView cartItemsRecyclerView;
+    private PlaceYourOrderAdapter placeYourOrderAdapter;
+    private EditText inputAddress,City;
+    private TextView tvSubtotalAmount,totalAmount,tvDeliveryChargeAmount;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +57,12 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
         toolbar= findViewById(R.id.toolbar);
         phoneLabel = header.findViewById(R.id.phonenumberLabel);
         usernameLabel =  header.findViewById(R.id.usernameLabel);
+        inputAddress = findViewById(R.id.inputAddress);
+        City=findViewById(R.id.inputCity);
+        tvSubtotalAmount=findViewById(R.id.tvSubtotalAmount);
+        totalAmount=findViewById(R.id.tvTotalAmount);
+        tvDeliveryChargeAmount=findViewById(R.id.tvDeliveryChargeAmount);
+
 
 
 
@@ -60,11 +80,27 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
             phoneLabel.setText(user.getPhoneNumber());
         }
         //---------main_menu(receiver_view)
+        Restaurant restaurant = getIntent().getParcelableExtra("rest");
         cartItemsRecyclerView=findViewById(R.id.cartItemsRecyclerView);
+        cartItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        placeYourOrderAdapter = new PlaceYourOrderAdapter(restaurant.getMenus());
+        cartItemsRecyclerView.setAdapter(placeYourOrderAdapter);
+        calculateTotalAmount(restaurant);
+
+
 
 
     }
-
+    private void onPlaceOrderButtonClick(Restaurant restaurant) {
+        if(TextUtils.isEmpty(inputAddress.getText().toString())) {
+            inputAddress.setError("Please enter address ");
+            return;
+        }
+        //start success activity..
+        Intent i = new Intent(Cart.this, OrderSuccessful.class);
+        i.putExtra("rest", restaurant);
+        startActivityForResult(i, 1000);
+    }
     @Override
     public void onBackPressed() {
         if(drawerlayout.isDrawerOpen(GravityCompat.START)){
@@ -72,6 +108,8 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
         }
         else{
             super.onBackPressed();
+            setResult(Activity.RESULT_CANCELED);
+            finish();
         }
     }
     @Override
@@ -100,5 +138,31 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
             finish();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+    private void calculateTotalAmount(Restaurant restaurant) {
+        float subTotalAmount = 0f;
+        delivery_charge=0f;
+
+        for(Food m : restaurant.getMenus()) {
+            subTotalAmount += m.getPrice() * m.getTotalInCart();
+        }
+
+        tvSubtotalAmount.setText("$"+String.format("%.2f", subTotalAmount));
+
+        if(subTotalAmount<200000) {
+            delivery_charge=20000.00f;
+            tvDeliveryChargeAmount.setText("$"+String.format("%.2f", delivery_charge));
+            subTotalAmount += delivery_charge;
+        }else if(subTotalAmount<400000){
+            delivery_charge=10000.00f;
+            tvDeliveryChargeAmount.setText("$"+String.format("%.2f", delivery_charge));
+            subTotalAmount += delivery_charge;
+        }
+        else{
+            delivery_charge=0f;
+            tvDeliveryChargeAmount.setText("$"+String.format("%.2f", delivery_charge));
+            subTotalAmount += delivery_charge;
+        }
+        totalAmount.setText("$"+String.format("%.2f", subTotalAmount));
     }
 }

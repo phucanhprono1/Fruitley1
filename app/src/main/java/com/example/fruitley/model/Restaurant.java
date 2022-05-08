@@ -39,6 +39,7 @@ public class Restaurant implements Parcelable {
         address = in.readString();
         hotline = in.readString();
         restaurantIdPic = in.readInt();
+        restaurantBg=in.readInt();
 
     }
 

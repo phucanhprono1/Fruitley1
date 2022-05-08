@@ -101,93 +101,33 @@
             android:hint="Enter your city"
             android:visibility="gone"/>
 
-        <EditText android:id="@+id/inputState"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputCity"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="05dp"
-            android:layout_marginBottom="05dp"
-            android:hint="Enter your state"
-            android:visibility="gone"/>
 
-        <EditText android:id="@+id/inputZip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputState"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="05dp"
-            android:layout_marginBottom="05dp"
-            android:hint="Enter your zip"
-            android:inputType="number"
-            android:maxLength="5"
-            android:visibility="gone"/>
+
+
 
         <TextView android:id="@+id/tvCardDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputZip"
+            app:layout_constraintTop_toBottomOf="@+id/inputCity"
             android:layout_margin="10dp"
             android:text="Card Details"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <EditText android:id="@+id/inputCardNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCardDetails"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="05dp"
-            android:layout_marginBottom="05dp"
-            android:hint="Enter Card Number"
-            android:inputType="number"
-            android:maxLength="16"/>
 
-        <EditText android:id="@+id/inputCardExpiry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputCardNumber"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="05dp"
-            android:layout_marginBottom="05dp"
-            android:hint="Enter Card expiry(mm/yyyy)"
-            android:inputType="number"
-            android:maxLength="6"/>
 
-        <EditText android:id="@+id/inputCardPin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputCardExpiry"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="05dp"
-            android:layout_marginBottom="05dp"
-            android:hint="Enter Card pin(3 digits)"
-            android:inputType="number"
-            android:maxLength="3"/>
+
+
+
 
         <TextView android:id="@+id/tvTotalItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputCardPin"
+            app:layout_constraintTop_toBottomOf="@+id/tvCardDetails"
             android:layout_margin="10dp"
             android:text="Total items in cart"
             android:textSize="18sp"
@@ -195,12 +135,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartItemsRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="917dp"
+            android:layout_height="458dp"
+            android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTotalItems"
-            android:nestedScrollingEnabled="false"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalItems" />
 
         <TextView android:id="@+id/tvSubtotal"
             android:layout_width="wrap_content"

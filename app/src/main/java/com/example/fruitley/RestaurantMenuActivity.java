@@ -45,8 +45,9 @@ public class RestaurantMenuActivity extends AppCompatActivity implements MenuLis
                 Restaurant restaurant = getIntent().getParcelableExtra("rest");
                 toolbar.setTitle(restaurant.getName());
                 toolbar.setSubtitle(restaurant.getAddress());
-                bg=findViewById(R.id.imageView2);
+                bg=findViewById(R.id.restaurant_bg);
                 bg.setImageResource(restaurant.getRestaurantBg());
+
 
                 menuList = restaurant.getMenus();
 
