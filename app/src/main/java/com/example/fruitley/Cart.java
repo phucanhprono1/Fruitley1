@@ -108,8 +108,8 @@ public class Cart extends AppCompatActivity implements NavigationView.OnNavigati
         }
         else{
             super.onBackPressed();
-            setResult(Activity.RESULT_CANCELED);
-            finish();
+//            setResult(Activity.RESULT_CANCELED);
+//            finish();
         }
     }
     @Override
